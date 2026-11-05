@@ -39,6 +39,21 @@ window.ABC_CONFIG = {
 };
 </script>
 
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1770461900677781');
+fbq('track', 'PageView');
+fbq('track', 'ViewContent', {content_name: 'Combo 4 Aulões', content_type: 'product', value: 39.9, currency: 'BRL'});
+</script>
+<!-- End Meta Pixel Code -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700..900;1,700..900&amp;family=Figtree:wght@400..800&amp;family=Montserrat:wght@800;900&amp;display=swap" rel="stylesheet">
 <style>
@@ -380,6 +395,7 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 </style>
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1770461900677781&amp;ev=PageView&amp;noscript=1"></noscript>
 <div style="background: #1C0708; color: #FFF3EA; font-family: 'Figtree', system-ui, sans-serif; font-size: 17px; line-height: 1.55; overflow-x: clip">
 
 <!-- progresso de leitura -->
@@ -970,6 +986,7 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 (function () {
   var c = window.ABC_CONFIG || {}, principal = (c.linkCheckout || '').trim(), oferta = (c.linkOferta || '').trim() || principal;
   document.querySelectorAll('[data-checkout]').forEach(function (a) { var u = a.getAttribute('data-checkout') === 'oferta' ? oferta : principal; if (u) a.setAttribute('href', u); });
+  document.querySelectorAll('[data-checkout]').forEach(function (a) { a.addEventListener('click', function () { if (window.fbq) fbq('track', 'InitiateCheckout', {content_name: 'Combo 4 Aulões', value: c.precoPor, currency: 'BRL', num_items: 1}); }); });
 })();
 </script>
 <script>
