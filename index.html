@@ -146,12 +146,25 @@ a:focus-visible,summary:focus-visible{outline:2px solid #FFCB5C;outline-offset:4
 .ap-h1-pop::after{content:"";position:absolute;top:0;left:0;width:28%;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);transform:translateX(-160%) skewX(-20deg);animation:apShine 3.4s ease-in-out 2.6s infinite}
 .ap-h1-b{position:relative;display:inline-block;max-width:19em;font-family:'Playfair Display',Georgia,serif;font-style:italic;font-weight:900;font-size:clamp(24px,2.6vw,36px);line-height:1.15;color:#FFCB5C;background:linear-gradient(100deg,#FFCB5C 35%,#FFF4D6 50%,#FFCB5C 65%);background-size:250% 100%;background-position:150% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 4px 18px rgba(30,0,0,.6));clip-path:inset(-20% 100% -45% -4%);animation:apWipe .9s cubic-bezier(.6,0,.2,1) 2.1s forwards,apTextLuz 4s ease-in-out 3.2s infinite}
 .ap-deck-in{position:relative;z-index:1;animation:apFoco 1.4s cubic-bezier(.2,.8,.2,1) .45s both}
-.ap-deck{position:relative;width:min(300px,58vw);aspect-ratio:523/774;perspective:1400px}
-.ap-dk{position:absolute;inset:0;animation:apDeck 12s cubic-bezier(.65,0,.35,1) infinite;will-change:transform}
-.ap-dk.d1{z-index:5}
-.ap-dk.d2{z-index:2;transform:translateX(44%) translateZ(-140px) rotateY(-22deg) scale(.8);filter:brightness(.6);animation-delay:-9s}
-.ap-dk.d3{z-index:1;transform:translateZ(-260px) scale(.66);opacity:.5;filter:brightness(.4);animation-delay:-6s}
-.ap-dk.d4{z-index:3;transform:translateX(-44%) translateZ(-140px) rotateY(22deg) scale(.8);filter:brightness(.6);animation-delay:-3s}
+.ap-deck{position:relative;--w:min(300px,58vw);width:var(--w);margin-top:calc(var(--w)*.24);aspect-ratio:523/774;perspective:1300px;perspective-origin:50% -55%}
+.ap-box-chao{position:absolute;left:-28%;right:-28%;bottom:-11%;height:16%;border-radius:50%;background:radial-gradient(ellipse,rgba(0,0,0,.75),rgba(0,0,0,0) 68%);filter:blur(8px);animation:apChao 12s cubic-bezier(.65,0,.35,1) infinite}
+.ap-box-tilt{position:absolute;inset:0;transform-style:preserve-3d;transform:rotateX(-7deg) rotateY(-16deg);animation:apBoxSway 7s ease-in-out infinite alternate}
+.ap-ring{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(calc(var(--w)/-2));animation:apRing 12s cubic-bezier(.65,0,.35,1) infinite;will-change:transform}
+.ap-dk{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.ap-dk.d1{transform:rotateY(0deg) translateZ(calc(var(--w)/2))}
+.ap-dk.d2{transform:rotateY(90deg) translateZ(calc(var(--w)/2))}
+.ap-dk.d3{transform:rotateY(180deg) translateZ(calc(var(--w)/2))}
+.ap-dk.d4{transform:rotateY(270deg) translateZ(calc(var(--w)/2))}
+.ap-deck .ap-cimg{border-radius:10px;box-shadow:0 0 0 1px rgba(255,180,29,.55)}
+.ap-dk::after{content:"";position:absolute;inset:0;border-radius:10px;background:linear-gradient(90deg,rgba(10,0,0,.72),rgba(10,0,0,.5));opacity:.62;pointer-events:none;animation:apLuz 12s cubic-bezier(.65,0,.35,1) infinite}
+.ap-dk.d1::after{opacity:0}
+.ap-dk.d2::after{animation-delay:-9s}.ap-dk.d3::after{animation-delay:-6s}.ap-dk.d4::after{animation-delay:-3s}
+.ap-dk::before{content:"";position:absolute;z-index:2;inset:0;border-radius:10px;background:linear-gradient(115deg,rgba(255,255,255,0) 30%,rgba(255,255,255,.34) 47%,rgba(255,255,255,0) 60%);background-size:260% 100%;background-position:120% 0;pointer-events:none;animation:apVidro 12s ease-in-out infinite}
+.ap-dk.d2::before{animation-delay:-9s}.ap-dk.d3::before{animation-delay:-6s}.ap-dk.d4::before{animation-delay:-3s}
+.ap-box-top{position:absolute;left:0;top:calc(var(--w)/-2);width:var(--w);height:var(--w);box-sizing:border-box;transform:rotateX(90deg);border-radius:10px;background:linear-gradient(135deg,#FFD778 0%,#FFB41D 45%,#B8780C 100%);box-shadow:inset 0 0 0 6px #1C0708,inset 0 0 0 9px #FFCB5C;display:grid;place-items:center;font-family:'Montserrat','Figtree',sans-serif;font-weight:900;font-size:calc(var(--w)*.2);line-height:.9;letter-spacing:-.03em;text-transform:uppercase;text-align:center;color:#1C0708}
+.ap-box-top small{display:block;font-size:.36em;letter-spacing:.12em}
+.ap-box-top>span{display:block;animation:apTopo 12s cubic-bezier(.65,0,.35,1) infinite}
+@keyframes apTopo{0%,20%{transform:rotate(0deg)}25%,45%{transform:rotate(-90deg)}50%,70%{transform:rotate(-180deg)}75%,95%{transform:rotate(-270deg)}100%{transform:rotate(-360deg)}}
 .ap-leg{position:relative;z-index:1;width:min(380px,92vw);height:58px}
 .ap-leg>span{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;text-align:center;opacity:0;animation:apLeg 12s ease infinite}
 .ap-leg>span:nth-child(1){opacity:1}
@@ -162,16 +175,21 @@ a:focus-visible,summary:focus-visible{outline:2px solid #FFCB5C;outline-offset:4
 .ap-dots>i{display:block;width:10px;height:10px;border-radius:999px;background:rgba(255,243,234,.35);animation:apDot 12s ease infinite}
 .ap-dots>i:nth-child(1){width:28px;background:#FFB41D}
 .ap-dots>i:nth-child(2){animation-delay:-9s}.ap-dots>i:nth-child(3){animation-delay:-6s}.ap-dots>i:nth-child(4){animation-delay:-3s}
-.ap-hero-foto:hover .ap-dk,.ap-hero-foto:hover .ap-leg>span,.ap-hero-foto:hover .ap-dots>i{animation-play-state:paused}
-@keyframes apDeck{
-0%,20%{transform:translateX(0) translateZ(0) rotateY(0deg) scale(1);opacity:1;filter:brightness(1);z-index:5}
-21%{z-index:3}
-25%,45%{transform:translateX(-44%) translateZ(-140px) rotateY(22deg) scale(.8);opacity:.95;filter:brightness(.6);z-index:3}
-50%,70%{transform:translateX(0) translateZ(-260px) rotateY(0deg) scale(.66);opacity:.5;filter:brightness(.4);z-index:1}
-75%,95%{transform:translateX(44%) translateZ(-140px) rotateY(-22deg) scale(.8);opacity:.95;filter:brightness(.6);z-index:2}
-96%{z-index:5}
-100%{transform:translateX(0) translateZ(0) rotateY(0deg) scale(1);opacity:1;filter:brightness(1);z-index:5}
+.ap-hero-foto:hover .ap-ring,.ap-hero-foto:hover .ap-box-top>span,.ap-hero-foto:hover .ap-box-chao,.ap-hero-foto:hover .ap-dk::after,.ap-hero-foto:hover .ap-dk::before,.ap-hero-foto:hover .ap-leg>span,.ap-hero-foto:hover .ap-dots>i{animation-play-state:paused}
+@keyframes apRing{
+0%,20%{transform:translateZ(calc(var(--w)/-2)) rotateY(0deg)}
+25%,45%{transform:translateZ(calc(var(--w)/-2)) rotateY(-90deg)}
+50%,70%{transform:translateZ(calc(var(--w)/-2)) rotateY(-180deg)}
+75%,95%{transform:translateZ(calc(var(--w)/-2)) rotateY(-270deg)}
+100%{transform:translateZ(calc(var(--w)/-2)) rotateY(-360deg)}
 }
+@keyframes apBoxSway{
+from{transform:rotateX(calc(-11deg + var(--py,0)*-7deg)) rotateY(calc(-22deg + var(--px,0)*16deg)) translateY(0)}
+to{transform:rotateX(calc(-8deg + var(--py,0)*-7deg)) rotateY(calc(-10deg + var(--px,0)*16deg)) translateY(-10px)}
+}
+@keyframes apLuz{0%,20%{opacity:0}25%,95%{opacity:.62}100%{opacity:0}}
+@keyframes apVidro{0%,2%{background-position:120% 0}16%,100%{background-position:-60% 0}}
+@keyframes apChao{0%,20%,25%,45%,50%,70%,75%,95%,100%{transform:scaleX(1);opacity:1}22.5%,47.5%,72.5%,97.5%{transform:scaleX(1.22);opacity:.8}}
 @keyframes apLeg{0%,19%{opacity:1;transform:none}23%,96%{opacity:0;transform:translateY(6px)}100%{opacity:1;transform:none}}
 @keyframes apDot{0%,20%{width:28px;background:#FFB41D}24%,96%{width:10px;background:rgba(255,243,234,.35)}100%{width:28px;background:#FFB41D}}
 .ap-cv{position:relative;width:100%;height:100%;overflow:hidden;border-radius:18px;container-type:inline-size;background:linear-gradient(180deg,var(--c1,#5E0509) 0%,var(--c2,#C2321E) 55%,var(--c3,#F2A346) 100%);box-shadow:0 30px 60px -26px rgba(0,0,0,.9),0 0 0 1px rgba(255,180,29,.35)}
@@ -186,8 +204,27 @@ a:focus-visible,summary:focus-visible{outline:2px solid #FFCB5C;outline-offset:4
 .ap-mods .ap-cv{height:auto;aspect-ratio:523/774;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
 .ap-cimg{position:relative;width:100%;height:100%;overflow:hidden;border-radius:18px;background:#3D0E10;box-shadow:0 30px 60px -26px rgba(0,0,0,.9),0 0 0 1px rgba(255,180,29,.35)}
 .ap-cimg>img{display:block;width:100%;height:100%;object-fit:cover}
-.ap-mods .ap-cimg{height:auto;aspect-ratio:523/774;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease}
-.ap-mods article:hover .ap-cv,.ap-mods article:hover .ap-cimg{transform:translateY(-6px) rotate(-1.2deg);box-shadow:0 30px 50px -22px rgba(0,0,0,.9),0 0 0 2px #FFB41D}
+.ap-mods .ap-cimg{height:auto;aspect-ratio:523/774;transition:transform .25s ease-out,box-shadow .35s ease}
+.ap-mods{perspective:1500px}
+.ap-mods>article{transform-style:preserve-3d}
+.ap-mods .ap-cimg{transform:rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));box-shadow:0 1px 0 #D9930F,0 2px 0 #C98509,0 3px 0 #B8780C,0 4px 0 #A66A0A,0 5px 0 #8F5A07,0 6px 0 #7A4C05,0 34px 50px -20px rgba(0,0,0,.95),0 0 0 1px rgba(255,180,29,.5)}
+.ap-mods .ap-cimg::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at var(--mx,50%) var(--my,0%),rgba(255,255,255,.4),rgba(255,255,255,0) 46%);opacity:var(--sh,0);transition:opacity .3s ease;pointer-events:none}
+.ap-mods article:hover .ap-cimg{box-shadow:0 1px 0 #D9930F,0 2px 0 #C98509,0 3px 0 #B8780C,0 4px 0 #A66A0A,0 5px 0 #8F5A07,0 6px 0 #7A4C05,0 50px 60px -24px rgba(0,0,0,.95),0 0 0 2px #FFB41D}
+.ap-mods .ap-n3d{position:absolute;z-index:3;left:-10px;top:-12px;display:grid;place-items:center;width:54px;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 32% 28%,#FFE9A8,#FFB41D 55%,#B8780C);color:#1C0708;font-family:'Montserrat','Figtree',sans-serif;font-weight:900;font-size:26px;line-height:1;box-shadow:0 2px 0 #8F5A07,0 4px 0 #7A4C05,0 12px 18px -6px rgba(0,0,0,.8);transform:translateZ(50px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))}
+.ap-capa3d{position:relative;transform-style:preserve-3d}
+@keyframes ap3dSwayA{from{transform:rotateY(-10deg) rotateX(3deg)}to{transform:rotateY(10deg) rotateX(-3deg)}}
+@keyframes ap3dIn{from{opacity:0;transform:perspective(1200px) rotateY(-62deg) translateZ(-180px) translateY(46px)}to{opacity:1;transform:none}}
+@keyframes ap3dH{from{opacity:0;transform:perspective(900px) rotateX(-62deg) translateY(36px)}to{opacity:1;transform:none}}
+@keyframes ap3dCard{from{transform:perspective(1100px) rotateY(-5deg) rotateX(2deg)}to{transform:perspective(1100px) rotateY(5deg) rotateX(-2deg)}}
+@media (hover:none){
+.ap-mods>article:nth-child(odd) .ap-cimg{animation:ap3dSwayA 5.5s ease-in-out infinite alternate}
+.ap-mods>article:nth-child(even) .ap-cimg{animation:ap3dSwayA 5.5s ease-in-out infinite alternate-reverse}
+.ap-preco3d{animation:ap3dCard 6s ease-in-out infinite alternate}
+}
+.ap-preco3d{transform:perspective(1100px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transform-style:preserve-3d;transition:transform .25s ease-out}
+.ap-preco3d>*{transform:translateZ(18px)}
+.ap-rs3d{transform:translateZ(46px) !important;text-shadow:0 1px 0 #A51219,0 2px 0 #981017,0 3px 0 #8B0E14,0 4px 0 #7E0C12,0 5px 0 #710A10,0 6px 0 #64080E,0 16px 18px rgba(60,0,0,.28)}
+.ap-nota3d{transform:perspective(1000px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg));transition:transform .25s ease-out;box-shadow:0 2px 0 #E5CDB9,0 4px 0 #D9BFAE,0 6px 0 #C9AE9B,0 30px 60px -28px rgba(0,0,0,.9) !important}
 .ap-cd{position:relative;overflow:hidden;padding:104px 0;background:#1C0708}
 .ap-cd-grid{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:56px;align-items:center}
 .ap-cd-foto{position:relative;height:clamp(440px,46vw,600px);min-width:0}
@@ -353,7 +390,8 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 @keyframes apMenuIn{from{opacity:0;transform:translateX(28px)}to{opacity:1;transform:none}}
 @supports (animation-timeline: view()){
 .ap-prog{animation:apProg linear both;animation-timeline:scroll(root)}
-.ap-mods>article{animation:apRise linear both;animation-timeline:view();animation-range:entry 0% entry 55%}
+.ap-mods>article{animation:ap3dIn linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+section h2{transform-origin:50% 100%;animation:ap3dH linear both;animation-timeline:view();animation-range:entry 5% entry 75%}
 .ap-mods>article:nth-child(2){animation-range:entry 6% entry 61%}
 .ap-mods>article:nth-child(3){animation-range:entry 12% entry 67%}
 .ap-mods>article:nth-child(4){animation-range:entry 18% entry 73%}
@@ -394,7 +432,7 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 </head>
 <body>
 <noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=1770461900677781&amp;ev=PageView&amp;noscript=1"></noscript>
-<div style="background: #1C0708; color: #FFF3EA; font-family: 'Figtree', system-ui, sans-serif; font-size: 17px; line-height: 1.55; overflow-x: clip">
+<div data-ref="set3d" style="background: #1C0708; color: #FFF3EA; font-family: 'Figtree', system-ui, sans-serif; font-size: 17px; line-height: 1.55; overflow-x: clip">
 
 <!-- progresso de leitura -->
 <div aria-hidden="true" style="position: sticky; top: 0; z-index: 30; height: 3px; margin-bottom: -3px">
@@ -454,6 +492,10 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 </div>
 <div class="ap-deck-in">
 <div class="ap-deck">
+<div class="ap-box-chao" aria-hidden="true"></div>
+<div class="ap-box-tilt">
+<div class="ap-ring">
+<div class="ap-box-top" aria-hidden="true"><span>4 em 1<small>Combo da Wan</small></span></div>
 
 <!-- capas dos aulões passando: a classe d1–d4 define a posição (d1 começa na frente, depois d2, d3, d4). A legenda .ap-leg segue a mesma ordem -->
 <article class="ap-dk d1" aria-label="Aulão 1: empadinha na modeladora">
@@ -479,6 +521,9 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 <img width="700" height="1036" src="assets/img/capas/nhoque-gourmet.webp" alt="Capa da aula de nhoque de alho-poró com parmesão: o prato pronto e um pacote de nhoque">
 </div>
 </article>
+
+</div>
+</div>
 
 </div>
 </div>
@@ -584,37 +629,41 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 </div>
 <div class="ap-mods">
 
-<article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<article data-tilt="13" style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div class="ap-capa3d"><span class="ap-n3d" aria-hidden="true">1</span>
 <div class="ap-cimg">
 <img width="700" height="1036" src="assets/img/capas/empadinha.webp" alt="Capa do Aulão de empadinha: a Wanessa segurando uma caixa cheia de empadinhas, com a modeladora ao fundo">
-</div>
+</div></div>
 <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: #FFCB5C">Aulão 1</span>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: 22px; line-height: 1.2">Empadinha na modeladora</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #F2DCD0">A empadinha feita na modeladora, pra você produzir em quantidade e atender as encomendas de festa.</p>
 </article>
 
-<article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<article data-tilt="13" style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div class="ap-capa3d"><span class="ap-n3d" aria-hidden="true">2</span>
 <div class="ap-cimg">
 <img width="700" height="1036" src="assets/img/capas/nhoque.webp" alt="Capa do Aulão de nhoque: uma caixa cheia de pacotes de nhoque prontos pra vender">
-</div>
+</div></div>
 <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: #FFCB5C">Aulão 2</span>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: 22px; line-height: 1.2">Nhoque em 3 formas</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #F2DCD0">Na marmita, recheado e tradicional: três jeitos de vender o mesmo nhoque.</p>
 </article>
 
-<article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<article data-tilt="13" style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div class="ap-capa3d"><span class="ap-n3d" aria-hidden="true">3</span>
 <div class="ap-cimg">
 <img width="700" height="1036" src="assets/img/capas/pao-de-queijo.webp" alt="Capa do aulão de pão de queijo: a Wanessa Massafelli com uma cesta de pães de queijo">
-</div>
+</div></div>
 <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: #FFCB5C">Aulão 3</span>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: 22px; line-height: 1.2">Pão de queijo na modeladora e na mão</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #F2DCD0">As duas formas no mesmo aulão: dá pra produzir com ou sem máquina.</p>
 </article>
 
-<article style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<article data-tilt="13" style="display: flex; flex-direction: column; gap: 12px; min-width: 0">
+<div class="ap-capa3d"><span class="ap-n3d" aria-hidden="true">4</span>
 <div class="ap-cimg">
 <img width="700" height="1036" src="assets/img/capas/nhoque-gourmet.webp" alt="Capa da aula de nhoque de alho-poró com parmesão: o prato pronto e um pacote de nhoque">
-</div>
+</div></div>
 <span style="font-size: 13px; font-weight: 800; letter-spacing: 0.02em; color: #FFCB5C">Aula 4</span>
 <h3 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: 22px; line-height: 1.2">Nhoque gourmet de alho-poró com parmesão</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #F2DCD0">O nhoque com alho-poró e parmesão: um sabor gourmet pra sair do básico e chamar atenção no seu cardápio.</p>
@@ -777,7 +826,7 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 <div class="ap-wrap" style="display: flex; flex-wrap: wrap; gap: 56px; align-items: center">
 <div style="flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: 26px">
 <h2 style="margin: 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(34px, 4.2vw, 56px); line-height: 1.05; letter-spacing: -0.015em">Faz a conta com a gente</h2>
-<div class="ap-nota">
+<div class="ap-nota ap-nota3d" data-tilt="6">
 <p class="ap-nota-tit">Se comprar um por um</p>
 <ul>
 <li><span>Aulão de empadinha na modeladora</span><span>R$ 19,90</span></li>
@@ -795,11 +844,11 @@ details[open] .ap-ans{animation:apFade .35s ease both}
 </div>
 </div>
 
-<div style="flex: 1 1 400px; max-width: 480px; min-width: 0; margin: 0 auto; background: #FFF3EA; color: #1C0708; border-radius: 30px; padding: 40px 32px 34px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; box-shadow: 0 0 0 2px #FFB41D, 0 30px 80px -30px rgba(255,97,60,0.55)">
+<div class="ap-preco3d" data-tilt="8" style="flex: 1 1 400px; max-width: 480px; min-width: 0; margin: 0 auto; background: #FFF3EA; color: #1C0708; border-radius: 30px; padding: 40px 32px 34px; box-sizing: border-box; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; box-shadow: 0 0 0 2px #FFB41D, 0 30px 80px -30px rgba(255,97,60,0.55)">
 <span style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: #C2171F; color: #FFFFFF; font-size: 15px; font-weight: 800">Esquenta Black Friday · 49% off</span>
 <p style="margin: 6px 0 0; font-family: 'Playfair Display', Georgia, serif; font-weight: 800; font-size: 34px; line-height: 1; color: #6A2E22">de <span class="ap-strike">R$ 79,60</span></p>
 <p style="margin: 6px 0 0; font-size: 17px; font-weight: 700">por</p>
-<div style="font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(68px, 8.6vw, 104px); line-height: 0.95; letter-spacing: -0.02em; color: #C2171F">R$ 39,90</div>
+<div class="ap-rs3d" style="font-family: 'Playfair Display', Georgia, serif; font-weight: 900; font-size: clamp(68px, 8.6vw, 104px); line-height: 0.95; letter-spacing: -0.02em; color: #C2171F">R$ 39,90</div>
 <p style="margin: 0; display: inline-flex; padding: 6px 14px; border-radius: 999px; background: #FFE3B0; font-size: 16px; font-weight: 800; color: #1C0708">Sai a R$ 9,97 por aulão</p>
 <p style="margin: 0; font-size: 16px; color: #6A2E22">Pagamento único, sem mensalidade. Pix ou cartão.</p>
 <p style="margin: 0; font-size: 15px; font-weight: 700; color: #C2171F">Você economiza R$ 39,70</p>
@@ -1048,6 +1097,44 @@ class Component extends DCLogic {
       },
       setPreco: (el) => this.vigia(el, 'Preco', () => this.props.segundosNoPreco ?? 2),
       setQuem: (el) => this.vigia(el, 'Quem', () => this.props.segundosNaWanessa ?? 7),
+      set3d: (el) => {
+        // 3D: no computador, as capas, a nota e o preço inclinam seguindo o mouse, e a caixa da capa vira junto
+        if (!el || this._3d || typeof window === 'undefined') return;
+        this._3d = true;
+        const mm = window.matchMedia ? (q) => window.matchMedia(q).matches : () => false;
+        if (mm('(prefers-reduced-motion: reduce)') || !mm('(hover: hover) and (pointer: fine)')) return;
+        let alvo = null;
+        const solta = () => {
+          if (!alvo) return;
+          ['--rx', '--ry', '--mx', '--my'].forEach((k) => alvo.style.removeProperty(k));
+          alvo.style.setProperty('--sh', '0');
+          alvo = null;
+        };
+        el.addEventListener('pointermove', (e) => {
+          const t = e.target && e.target.closest ? e.target : null;
+          if (!t) return;
+          const c = t.closest('[data-tilt]');
+          if (c !== alvo) solta();
+          if (c) {
+            alvo = c;
+            const r = c.getBoundingClientRect();
+            const x = (e.clientX - r.left) / r.width, y = (e.clientY - r.top) / r.height;
+            const m = Number(c.getAttribute('data-tilt')) || 10;
+            c.style.setProperty('--ry', ((x - 0.5) * 2 * m).toFixed(2) + 'deg');
+            c.style.setProperty('--rx', ((0.5 - y) * 2 * m).toFixed(2) + 'deg');
+            c.style.setProperty('--mx', (x * 100).toFixed(1) + '%');
+            c.style.setProperty('--my', (y * 100).toFixed(1) + '%');
+            c.style.setProperty('--sh', '1');
+          }
+          const capa = t.closest('.ap-capa');
+          if (capa) {
+            const r = capa.getBoundingClientRect();
+            capa.style.setProperty('--px', (((e.clientX - r.left) / r.width) * 2 - 1).toFixed(3));
+            capa.style.setProperty('--py', (((e.clientY - r.top) / r.height) * 2 - 1).toFixed(3));
+          }
+        }, { passive: true });
+        el.addEventListener('pointerleave', solta);
+      },
       fecharOferta: () => this.setState({ oferta: false }),
       clicouCompra: () => this.setState({ clicou: true })
     };
